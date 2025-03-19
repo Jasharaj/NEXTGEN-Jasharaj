@@ -69,8 +69,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
+      // Use environment variable for API URL instead of hardcoded localhost
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      
       // Call backend logout endpoint
-      const response = await fetch('http://localhost:4000/api/v1/auth/admin/logout', {
+      const response = await fetch(`${apiBaseUrl}/api/v1/auth/admin/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: {

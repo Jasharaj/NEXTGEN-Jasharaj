@@ -251,7 +251,8 @@ const AdminSignupForm = () => {
     const loadingToast = toast.loading("Creating admin account...");
 
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/auth/admin/signup`, {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      const response = await fetch(`${apiBaseUrl}/api/v1/auth/admin/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
